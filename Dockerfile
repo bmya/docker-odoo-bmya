@@ -10,7 +10,7 @@ USER root
 
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git
+        python-pip git sudo
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
