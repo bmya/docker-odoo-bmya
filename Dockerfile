@@ -14,7 +14,7 @@ RUN apt-get update \
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
-RUN pip install psycogreen
+## RUN pip install psycogreen
 
 
 # used by many pip packages
@@ -28,11 +28,11 @@ RUN apt-get install -y python-matplotlib font-manager
 # to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
 # to be removed when we remove crypto
-RUN pip install M2Crypto suds
+## RUN pip install M2Crypto suds
 
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
+## RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 
 # M2Crypto suponemos que no haria falta ahora
 RUN hg clone https://code.google.com/p/pyafipws
@@ -42,30 +42,30 @@ RUN python setup.py install
 RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
 # odoo etl, infra and others
-RUN pip install openerp-client-lib fabric erppeek fabtools
+## RUN pip install openerp-client-lib fabric fabtools
 
 # oca reports
-RUN pip install xlwt
+## RUN pip install xlwt
 
 # odoo kineses
-RUN pip install xlrd
+## RUN pip install xlrd
 
 # oca partner contacts
-RUN pip install unicodecsv
+## RUN pip install unicodecsv
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
-RUN pip install git+https://github.com/aeroo/aeroolib.git@master
-RUN pip install pycups==1.9.68
+## RUN pip install git+https://github.com/aeroo/aeroolib.git@master
+## RUN pip install pycups==1.9.68
 
 # akretion/odoo-usability
-RUN pip install BeautifulSoup4
+## RUN pip install BeautifulSoup4
 
 # OCA knowledge
-RUN pip install python-magic
+## RUN pip install python-magic
 
 # odoo support
-RUN pip install erppeek
+## RUN pip install erppeek
 
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
