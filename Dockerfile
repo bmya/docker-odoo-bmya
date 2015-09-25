@@ -72,6 +72,10 @@ RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+WORKDIR /mnt/extra-addons
+RUN git clone https://github.com/bmya/odoo-addons.git /mnt/extra-addons
+
+
 # Make auto_install = False for various modules
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/im_chat/__openerp__.py
 
@@ -82,8 +86,6 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/base_import/__openerp__.py
 
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
-
-RUN git clone https://github.com/bmya/odoo-addons.git /mnt/extra-addons
 
 
 USER odoo
