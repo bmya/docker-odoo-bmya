@@ -83,4 +83,7 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
 
+RUN git clone https://github.com/bmya/odoo-addons.git /mnt/extra-addons
+
+
 USER odoo
