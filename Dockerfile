@@ -67,25 +67,25 @@ RUN apt-get install -y libcups2-dev
 # odoo support
 ## RUN pip install erppeek
 
+# update openerp-server.conf file (todo: edit with "sed")
+COPY ./openerp-server.conf /etc/odoo/
+RUN chown odoo /etc/odoo/openerp-server.conf
+
+RUN mkdir -p /opt/odoo/stable-addons/bmya
+WORKDIR /opt/odoo/stable-addons/bmya
+RUN git clone https://github.com/bmya/odoo-addons.git
+RUN chown -R odoo:odoo /opt/odoo/stable-addons
+
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /mnt/extra-addons
-RUN git clone https://github.com/bmya/odoo-addons.git /mnt/extra-addons
-
-
 # Make auto_install = False for various modules
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/im_chat/__openerp__.py
-
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/im_odoo_support/__openerp__.py
-
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/bus/__openerp__.py
-
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/base_import/__openerp__.py
-
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
-
 
 USER odoo
