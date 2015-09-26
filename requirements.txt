@@ -4,7 +4,6 @@ suds
 geopy==0.95.1
 BeautifulSoup
 pyOpenSSL
-suds
 openerp-client-lib
 fabric
 erppeek
@@ -13,7 +12,9 @@ xlwt
 xlrd
 unicodecsv
 git+https://github.com/aeroo/aeroolib.git@master
-pycups==1.9.68
+#pycups==1.9.68
 BeautifulSoup4
 python-magic
 gdata
+pysimplesoap
+fpdf

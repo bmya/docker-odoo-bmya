@@ -2,7 +2,6 @@ FROM bmya/odoo:latest
 MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
 # with custom refferences
-
 ENV REFRESHED_AT 2015-09-20
 
 # install some dependencies
@@ -14,59 +13,38 @@ RUN apt-get update \
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
-## RUN pip install psycogreen
 
-
-# used by many pip packages
 RUN apt-get install -y python-dev
 
 # odoo-extra
-RUN apt-get install -y python-matplotlib font-manager
-
-# odoo fact electronica (pip dependencies for adhoc)
+RUN apt-get install -y python-matplotlib font-manager 
 
 # to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
-# to be removed when we remove crypto
-## RUN pip install M2Crypto suds
-
-# odoo argentina (nuevo modulo de FE)
-RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
-## RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
-
-# M2Crypto suponemos que no haria falta ahora
-RUN hg clone https://code.google.com/p/pyafipws
-WORKDIR /pyafipws/
-RUN pip install -r requirements.txt
-RUN python setup.py install
-RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
-
-# odoo etl, infra and others
-## RUN pip install openerp-client-lib fabric fabtools
-
-# oca reports
-## RUN pip install xlwt
-
-# odoo kineses
-## RUN pip install xlrd
-
-# oca partner contacts
-## RUN pip install unicodecsv
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
-## RUN pip install git+https://github.com/aeroo/aeroolib.git@master
-## RUN pip install pycups==1.9.68
 
-# akretion/odoo-usability
-## RUN pip install BeautifulSoup4
+# odoo argentina (nuevo modulo de FE)
+RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
 
-# OCA knowledge
-## RUN pip install python-magic
+ADD ./requirements.txt .
+RUN pip install -r requirements.txt
 
-# odoo support
-## RUN pip install erppeek
+# Agregado por Daniel Blanco para ver si soluciona el problema de la falta de la biblioteca pysimplesoap
+# RUN git clone https://github.com/pysimplesoap/pysimplesoap.git
+# WORKDIR /pysimplesoap/
+# RUN python setup.py install
 
+RUN hg clone https://code.google.com/p/pyafipws
+WORKDIR /pyafipws/
+RUN python setup.py install
+RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
+
+# RUN git clone https://github.com/reingart/pyafipws.git
+# WORKDIR /pyafipws/
+# RUN python setup.py install
+# RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
 RUN mkdir -p /opt/odoo/stable-addons/bmya
 RUN mkdir -p /opt/odoo/.filelocal/odoo
@@ -78,9 +56,10 @@ RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
 
-WORKDIR /opt/odoo/stable-addons/bmya
+WORKDIR /opt/odoo/stable-addons/bmya/
 RUN git clone https://github.com/bmya/odoo-addons.git
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
+WORKDIR /opt/odoo/stable-addons/
 
 ## Clean apt-get (copied from odoo)
 RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false
