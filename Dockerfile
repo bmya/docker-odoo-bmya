@@ -70,6 +70,9 @@ RUN apt-get install -y libcups2-dev
 # update openerp-server.conf file (todo: edit with "sed")
 COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
+RUN chown -R odoo /mnt/filelocal
+RUN chown -R odoo /mnt/extra-addons
+RUN chown -R odoo /mnt/test-addons
 
 RUN mkdir -p /opt/odoo/stable-addons/bmya
 WORKDIR /opt/odoo/stable-addons/bmya
