@@ -67,14 +67,17 @@ RUN apt-get install -y libcups2-dev
 # odoo support
 ## RUN pip install erppeek
 
+
+RUN mkdir -p /opt/odoo/stable-addons/bmya
+RUN mkdir -p /opt/odoo/.filelocal/odoo
+
 # update openerp-server.conf file (todo: edit with "sed")
 COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
-RUN chown -R odoo /mnt/filelocal
+RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
 
-RUN mkdir -p /opt/odoo/stable-addons/bmya
 WORKDIR /opt/odoo/stable-addons/bmya
 RUN git clone https://github.com/bmya/odoo-addons.git
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
