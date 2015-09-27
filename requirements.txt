@@ -18,3 +18,4 @@ python-magic
 gdata
 pysimplesoap
 fpdf
+pandas
