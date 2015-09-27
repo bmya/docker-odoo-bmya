@@ -9,7 +9,7 @@ USER root
 
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git sudo
+        python-pip git sudo vim
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
@@ -57,7 +57,16 @@ RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
 
 WORKDIR /opt/odoo/stable-addons/bmya/
-RUN git clone https://github.com/bmya/odoo-addons.git
+RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
+RUN git clone https://github.com/bmya/server-tools.git
+RUN git clone https://github.com/bmya/pos-addons.git
+RUN git clone https://github.com/bmya/ws-zilinkas.git
+RUN git clone https://github.com/bmya/addons-vauxoo.git
+RUN git clone https://github.com/bmya/addons-yelizariev.git
+RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
+RUN git clone https://github.com/bmya/odoo-web.git
+RUN git clone https://github.com/bmya/website-addons.git
+
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
 
