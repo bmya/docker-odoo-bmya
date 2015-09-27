@@ -26,7 +26,8 @@ RUN apt-get install -y swig libssl-dev
 RUN apt-get install -y libcups2-dev
 
 # odoo argentina (nuevo modulo de FE)
-RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
+RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial python-pandas
+
 
 ADD ./requirements.txt .
 RUN pip install -r requirements.txt
@@ -56,6 +57,9 @@ RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
 
+WORKDIR /opt/odoo/stable-addons/
+RUN git clone https://github.com/aeroo/aeroo_reports.git
+
 WORKDIR /opt/odoo/stable-addons/bmya/
 RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
 RUN git clone https://github.com/bmya/server-tools.git
@@ -66,6 +70,7 @@ RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
 RUN git clone https://github.com/bmya/odoo-web.git
 RUN git clone https://github.com/bmya/website-addons.git
+
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
@@ -82,5 +87,6 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/base_import/__openerp__.py
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
 RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
+#RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
 
 USER odoo
