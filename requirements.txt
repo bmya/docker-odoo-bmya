@@ -9,10 +9,9 @@ fabric
 erppeek
 fabtools
 xlwt
-xlrd
 unicodecsv
 git+https://github.com/aeroo/aeroolib.git@master
-#pycups==1.9.68
+pycups==1.9.68
 BeautifulSoup4
 python-magic
 gdata
