@@ -48,6 +48,7 @@ RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 # RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
 RUN mkdir -p /opt/odoo/stable-addons/bmya
+RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
 RUN mkdir -p /opt/odoo/.filelocal/odoo
 
 # update openerp-server.conf file (todo: edit with "sed")
@@ -70,6 +71,18 @@ RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
 RUN git clone https://github.com/bmya/odoo-web.git
 RUN git clone https://github.com/bmya/website-addons.git
+
+WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
+RUN git clone https://github.com/odoo-chile/l10n_cl_base.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_banks_sbif.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_invoice.git
+RUN git clone https://github.com/odoo-chile/base_state_ubication.git
+RUN git clone https://github.com/odoo-chile/decimal_precision_currency.git
+RUN git clone https://github.com/odoo-chile/invoice_printed.git
 
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
