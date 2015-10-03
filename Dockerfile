@@ -84,7 +84,7 @@ RUN git clone https://github.com/odoo-chile/l10n_cl_invoice.git
 RUN git clone https://github.com/odoo-chile/base_state_ubication.git
 RUN git clone https://github.com/odoo-chile/decimal_precision_currency.git
 RUN git clone https://github.com/odoo-chile/invoice_printed.git
-
+RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
