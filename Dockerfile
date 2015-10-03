@@ -1,5 +1,5 @@
 FROM bmya/odoo:latest
-MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>byz
+MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
 # with custom refferences
 ENV REFRESHED_AT 2015-09-20
