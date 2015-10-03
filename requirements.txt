@@ -17,3 +17,7 @@ python-magic
 gdata
 pysimplesoap
 fpdf
+cx_Oracle
+crypto
+sqlalchemy
+

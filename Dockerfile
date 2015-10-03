@@ -1,5 +1,5 @@
 FROM bmya/odoo:latest
-MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
+MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>byz
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
 # with custom refferences
 ENV REFRESHED_AT 2015-09-20
@@ -9,7 +9,7 @@ USER root
 
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git sudo vim python-xlrd python-crypto
+        python-pip git sudo vim python-xlrd python-pyodbc unixodbc unixodbc-dev freetds-dev freetds-bin tdsodbc
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
