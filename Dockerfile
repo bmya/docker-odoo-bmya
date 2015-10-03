@@ -9,7 +9,7 @@ USER root
 
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git sudo vim python-xlrd
+        python-pip git sudo vim python-xlrd python-crypto
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
