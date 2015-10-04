@@ -1,6 +1,4 @@
 psycogreen
-M2Crypto
-suds
 geopy==0.95.1
 BeautifulSoup
 pyOpenSSL
@@ -17,6 +15,5 @@ python-magic
 gdata
 pysimplesoap
 fpdf
-crypto
 sqlalchemy
 

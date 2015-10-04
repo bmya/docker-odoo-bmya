@@ -21,6 +21,8 @@ RUN apt-get install -y python-matplotlib font-manager
 
 # to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
+# to be removed when we remove crypto
+RUN pip install M2Crypto suds
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
@@ -66,7 +68,7 @@ RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
 RUN git clone https://github.com/bmya/server-tools.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
-RUN git clone https://github.com/bmya/addons-vauxoo.git
+# RUN git clone https://github.com/bmya/addons-vauxoo.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
 RUN git clone https://github.com/bmya/odoo-web.git
