@@ -1,7 +1,4 @@
 psycogreen
-geopy==0.95.1
-BeautifulSoup
-pyOpenSSL
 openerp-client-lib
 fabric
 erppeek
@@ -15,5 +12,4 @@ python-magic
 gdata
 pysimplesoap
 fpdf
-sqlalchemy
 

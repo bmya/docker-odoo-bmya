@@ -20,8 +20,6 @@ RUN apt-get install -y python-dev
 RUN apt-get install -y python-matplotlib font-manager 
 
 # to be removed when we remove crypto
-RUN apt-get install -y swig libssl-dev
-# to be removed when we remove crypto
 RUN pip install M2Crypto suds
 
 # aeroo direct print
@@ -29,7 +27,7 @@ RUN apt-get install -y libcups2-dev
 
 # odoo argentina (nuevo modulo de FE)
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial python-pandas
-
+RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 
 ADD ./requirements.txt .
 RUN pip install -r requirements.txt
@@ -68,6 +66,8 @@ RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
 RUN git clone https://github.com/bmya/server-tools.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
+# Eliminado para evitar la gran instalación de dependencias que tiene
+# (Por ahora para tenerlo estable)
 # RUN git clone https://github.com/bmya/addons-vauxoo.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
