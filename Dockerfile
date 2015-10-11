@@ -126,10 +126,12 @@ RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone https://github.com/bmya/odoo-argentina.git
 RUN git clone https://github.com/bmya/odoo-web.git
 RUN git clone https://github.com/bmya/website-addons.git
+RUN git clone https://github.com/bmya/tkobr-addons.git tko
 
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
 RUN git clone https://github.com/odoo-chile/l10n_cl_base.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_base_rut.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
