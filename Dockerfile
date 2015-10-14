@@ -83,6 +83,7 @@ RUN pip install xlrd
 
 # create directories for repos
 RUN mkdir -p /opt/odoo/stable-addons/bmya
+RUN mkdir -p /opt/odoo/stable-addons/oca
 RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
 RUN mkdir -p /opt/odoo/.filelocal/odoo
 
@@ -95,7 +96,6 @@ RUN chown -R odoo /mnt/test-addons
 
 # oca partner contacts
 RUN pip install unicodecsv
-
 
 # aeroo direct print
 RUN apt-get install -y libcups2-dev
@@ -141,6 +141,10 @@ RUN git clone https://github.com/odoo-chile/base_state_ubication.git
 RUN git clone https://github.com/odoo-chile/decimal_precision_currency.git
 RUN git clone https://github.com/odoo-chile/invoice_printed.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
+
+WORKDIR /opt/odoo/stable-addons/oca/
+RUN git clone https://github.com/OCA/web.git
+RUN git clone https://github.com/OCA/knowledge.git
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
