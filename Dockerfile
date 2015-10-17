@@ -143,8 +143,8 @@ RUN git clone https://github.com/odoo-chile/invoice_printed.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
 
 WORKDIR /opt/odoo/stable-addons/oca/
-RUN git clone https://github.com/OCA/web.git
-RUN git clone https://github.com/OCA/knowledge.git
+RUN git clone -b 8.0 https://github.com/OCA/web.git
+RUN git clone -b 8.0 https://github.com/OCA/knowledge.git
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
