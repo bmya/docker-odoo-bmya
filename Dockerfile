@@ -123,7 +123,9 @@ RUN git clone https://github.com/bmya/ws-zilinkas.git
 # RUN git clone https://github.com/bmya/addons-vauxoo.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
 # RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
+
 RUN git clone https://github.com/bmya/odoo-argentina.git
+
 RUN git clone https://github.com/bmya/odoo-web.git
 RUN git clone https://github.com/bmya/website-addons.git
 RUN git clone https://github.com/bmya/tkobr-addons.git tko
