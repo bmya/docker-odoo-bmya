@@ -86,6 +86,7 @@ RUN mkdir -p /opt/odoo/stable-addons/bmya
 RUN mkdir -p /opt/odoo/stable-addons/oca
 RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
 RUN mkdir -p /opt/odoo/.filelocal/odoo
+RUN mkdir -p /var/lib/odoo/backups/synced
 
 # update openerp-server.conf file (todo: edit with "sed")
 COPY ./openerp-server.conf /etc/odoo/
