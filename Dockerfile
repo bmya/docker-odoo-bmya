@@ -93,6 +93,7 @@ RUN chown odoo /etc/odoo/openerp-server.conf
 RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
+RUN chown -R odoo /var/lib/odoo
 
 # oca partner contacts
 RUN pip install unicodecsv
