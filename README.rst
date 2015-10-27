@@ -1,8 +1,13 @@
 # Cómo partir con Odoo en un servidor limpio en 8 pasos.
+
 ## 1) Instalar docker
-sudo wget -qO- https://get.docker.com/ | sh (probado en Ubuntu 14.04.  Para otras versiones de sistema operativo, consultar el sitio de Docker).
+
+sudo wget -qO- https://get.docker.com/ | sh 
+
+(probado en Ubuntu 14.04.  Para otras versiones de sistema operativo, consultar el sitio de Docker).
 
 ## 2) Agregar el usuario actual al grupo docker
+
 sudo gpasswd -a ${USER} docker
 
 Esto permitirá que tu usuario, pertenezca al grupo 'docker', y de esta manera no será necesario utilizar "sudo" delante de los comandos para cargar docker.
@@ -15,8 +20,10 @@ sudo service docker restart
 
 ## 4) Cerrar y abrir sesión para tomar los cambios
 .. esto permitirá que el sistema operativo te tome como usuario del grupo docker.
+
 ## 5) Correr un contenedor docker con postgres a partir
 de la imágen oficial de postgres
+
 docker run -d --name="postgres" \
 -v /opt/database:/var/lib/postgresql/data \
 -v /var/log/postgresql:/var/log/postgresql postgres:9.4
@@ -42,3 +49,4 @@ docker run -d \
 -p 127.0.0.1:8069:8069 \
 --name odoo \
 --link postgres:db -t bmya/odoo-bmya:latest
+
