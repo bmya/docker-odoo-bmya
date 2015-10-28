@@ -1,35 +1,52 @@
-# como partir con Odoo en un servidor limpio en 7 pasos.
-# primero: instalar docker
-sudo apt-get -y install docker.io
+# Cómo partir con Odoo en un servidor limpio en 8 pasos.
 
-# segundo: agregar el usuario actual al grupo docker
+## 1) Instalar docker
+
+sudo wget -qO- https://get.docker.com/ | sh 
+
+(probado en Ubuntu 14.04.  Para otras versiones de sistema operativo, consultar el sitio de Docker).
+
+## 2) Agregar el usuario actual al grupo docker
+
 sudo gpasswd -a ${USER} docker
 
-# tercero: reiniciar servicio docker
+Esto permitirá que tu usuario, pertenezca al grupo 'docker', y de esta manera no será necesario utilizar "sudo" delante de los comandos para cargar docker.
+
+## 3) Reiniciar servicio docker
+
+Una vez realizado este cambio, deberás reiniciar el servicio docker para que tome el cambio.
+
 sudo service docker restart
 
-# cuarto: cerrar y abrir sesión para tomar los cambios
+## 4) Cerrar y abrir sesión para tomar los cambios
+.. esto permitirá que el sistema operativo te tome como usuario del grupo docker.
 
-# quinto: correr un contenedor docker con postgres a partir
-# de la imágen oficial de postgres
+## 5) Correr un contenedor docker con postgres a partir
+de la imágen oficial de postgres
+
 docker run -d --name="postgres" \
-  -v /opt/database:/var/lib/postgresql/data \
-  -v /var/log/postgresql:/var/log/postgresql postgres:9.3
+-v /opt/database:/var/lib/postgresql/data \
+-v /var/log/postgresql:/var/log/postgresql postgres:9.4
 
-# sexto: conectarse al contenedor  postgres y crear un usuario "odoo" en la imagen de postgres
+En caso que además desees que el contenedor se reinicie al reiniciar el equipo, deberás incluir --restart="always" como una de las opciones del comando. (válido para todos los contenedores).
+
+## 6) Conectarse al contenedor postgres y crear un usuario "odoo" en la imagen de postgres
+Esto debe ser hecho por única vez:
+
 docker run -it --link postgres:postgres --rm postgres \
-  sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" \
-  -p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
+sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" \
+-p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
 
 CREATE USER odoo WITH PASSWORD 'odoo';
 ALTER USER odoo WITH SUPERUSER;
 
-# séptimo: salir de psql
+## 7) Salir de psql
 \q
 
-# octavo: correr un contenedor de Odoo conectándo postgres
+## 8) Correr un contenedor de Odoo conectando postgres:
 docker run -d \
 -v /opt/odoo/test-addons:/mnt/test-addons \
 -p 127.0.0.1:8069:8069 \
 --name odoo \
 --link postgres:db -t bmya/odoo-bmya:latest
+
