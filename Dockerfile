@@ -82,9 +82,8 @@ RUN pip install xlwt
 RUN pip install xlrd
 
 # create directories for repos
-# RUN mkdir -p /opt/odoo/stable-addons/bmya
-RUN mkdir -p /opt/odoo/stable-addons/oca
-RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
+RUN mkdir -p /mnt/extra-addons/oca
+RUN mkdir -p /mnt/extra-addons/bmya/odoo-chile
 RUN mkdir -p /opt/odoo/.filelocal/odoo
 RUN mkdir -p /var/lib/odoo/backups/synced
 
@@ -95,6 +94,7 @@ RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /mnt/test-addons
 RUN chown -R odoo /var/lib/odoo
+RUN chown -R odoo /mnt/filelocal/odoo
 
 # oca partner contacts
 RUN pip install unicodecsv
@@ -114,44 +114,44 @@ RUN pip install python-magic
 RUN pip install erppeek
 
 # Instalación de repositorios varios BMyA
-WORKDIR /opt/odoo/stable-addons/bmya/
+WORKDIR /mnt/extra-addons/bmya/
+
 RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
-# RUN git clone https://github.com/bmya/odoo-crypto.git
 RUN git clone https://github.com/bmya/server-tools.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
+
 # Eliminado para evitar la gran instalación de dependencias que tiene
 # (Por ahora para tenerlo estable)
 # RUN git clone https://github.com/bmya/addons-vauxoo.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
-# RUN git clone -b custom_cl3 https://github.com/bmya/odoo-argentina.git
 
-RUN git clone https://github.com/bmya/odoo-argentina.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
+RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
+RUN git clone -b 8.0 https://github.com/bmya/tkobr-addons.git tko
 
-RUN git clone https://github.com/bmya/odoo-web.git
-RUN git clone https://github.com/bmya/website-addons.git
-RUN git clone https://github.com/bmya/tkobr-addons.git tko
-
-WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
-RUN git clone https://github.com/odoo-chile/l10n_cl_base.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_base_rut.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
+WORKDIR /mnt/extra-addons/bmya/odoo-chile/
 RUN git clone https://github.com/odoo-chile/l10n_cl_banks_sbif.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_base.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_base_rut.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_invoice.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
 RUN git clone https://github.com/odoo-chile/base_state_ubication.git
 RUN git clone https://github.com/odoo-chile/decimal_precision_currency.git
 RUN git clone https://github.com/odoo-chile/invoice_printed.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
 
-WORKDIR /opt/odoo/stable-addons/oca/
-RUN git clone -b 8.0 https://github.com/OCA/web.git
+WORKDIR /mnt/extra-addons/oca/
+RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 RUN git clone -b 8.0 https://github.com/OCA/knowledge.git
+RUN git clone -b 8.0 https://github.com/OCA/web.git
 
-RUN chown -R odoo:odoo /opt/odoo/stable-addons
-WORKDIR /opt/odoo/stable-addons/
+RUN chown -R odoo:odoo /mnt/extra-addons
+WORKDIR /mnt/extra-addons/
 RUN git clone https://github.com/aeroo/aeroo_reports.git
 
 ## Clean apt-get (copied from odoo)
@@ -170,6 +170,6 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
 
-RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
+RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /mnt/extra-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
 
 USER odoo
