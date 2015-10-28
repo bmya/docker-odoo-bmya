@@ -82,7 +82,7 @@ RUN pip install xlwt
 RUN pip install xlrd
 
 # create directories for repos
-RUN mkdir -p /opt/odoo/stable-addons/bmya
+# RUN mkdir -p /opt/odoo/stable-addons/bmya
 RUN mkdir -p /opt/odoo/stable-addons/oca
 RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
 RUN mkdir -p /opt/odoo/.filelocal/odoo
