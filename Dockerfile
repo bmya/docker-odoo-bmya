@@ -1,8 +1,7 @@
 FROM bmya/odoo:latest
 MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
-# with custom refferences
-
+# with custom references
 
 # install some dependencies
 USER root
@@ -21,7 +20,7 @@ ENV LC_ALL C.UTF-8
 # Install some deps
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git sudo vim
+        python-pip git vim
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
@@ -91,7 +90,7 @@ RUN mkdir -p /var/lib/odoo/backups/synced
 COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
 RUN chown -R odoo /opt/odoo
-RUN chown -R odoo /opt/odoo/stable-addons
+# RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/test-addons
 RUN chown -R odoo /var/lib/odoo
 RUN chown -R odoo /mnt/filelocal/odoo
@@ -120,6 +119,7 @@ RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
 RUN git clone https://github.com/bmya/server-tools.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
+RUN git clone -b bmya_custom https://github.com/bmya/odoo-support.git
 
 # Eliminado para evitar la gran instalación de dependencias que tiene
 # (Por ahora para tenerlo estable)

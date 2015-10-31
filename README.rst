@@ -1,5 +1,8 @@
 # Cómo partir con Odoo en un servidor limpio en 8 pasos.
 
+## Prerequisitos:
+Según nuestras últimas pruebas es conveniente la preexistencia de un usuario "odoo" en el sistema donde se realiza la instalación.
+
 ## 1) Instalar docker
 
 sudo wget -qO- https://get.docker.com/ | sh 
