@@ -93,7 +93,7 @@ RUN chown -R odoo /opt/odoo
 # RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/test-addons
 RUN chown -R odoo /var/lib/odoo
-RUN chown -R odoo /mnt/filelocal/odoo
+# RUN chown -R odoo /mnt/filelocal/odoo
 
 # oca partner contacts
 RUN pip install unicodecsv
