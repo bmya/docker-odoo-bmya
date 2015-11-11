@@ -34,7 +34,7 @@ RUN apt-get install -y python-dev
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
 
-# odoo argentina (nuevo modulo de FE)
+# odoo argentina (nuevo modulo de FE).
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 
