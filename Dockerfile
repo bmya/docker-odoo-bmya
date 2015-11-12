@@ -138,6 +138,7 @@ RUN git clone https://github.com/odoo-chile/l10n_cl_base_rut.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_invoice.git
+RUN git clone https://github.com/odoo-chile/l10n_cl_account_vat_ledger.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
 RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
