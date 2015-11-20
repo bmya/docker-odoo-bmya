@@ -73,6 +73,9 @@ RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 # odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
 
+# dte implementation
+RUN pip install xmltodict
+RUN pip install elaphe
 
 # oca reports
 RUN pip install xlwt
@@ -129,6 +132,7 @@ RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
 RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/tkobr-addons.git tko
 
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
