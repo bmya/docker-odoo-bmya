@@ -27,7 +27,7 @@ RUN apt-get install -y python-gevent
 RUN pip install psycogreen
 
 ## Install pip dependencies for adhoc used odoo repositories
-
+# 
 # used by many pip packages
 RUN apt-get install -y python-dev
 
