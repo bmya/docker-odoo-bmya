@@ -22,6 +22,9 @@ RUN apt-get update \
         && apt-get install -y \
         python-pip git vim
 
+# 
+RUN pip install urllib3
+
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
 RUN pip install psycogreen
@@ -36,6 +39,7 @@ RUN apt-get install -y python-matplotlib font-manager
 
 # odoo argentina (nuevo modulo de FE).
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
+
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
 
 # odoo bmya cambiado de orden (antes o despues de odoo argentina)
