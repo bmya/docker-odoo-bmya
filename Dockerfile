@@ -18,12 +18,15 @@ ENV LANGUAGE C.UTF-8
 ENV LC_ALL C.UTF-8
 
 # Install some deps
+# adds slqalchemy
 RUN apt-get update \
         && apt-get install -y \
         python-pip git vim
 
 # 
 RUN pip install urllib3
+RUN pip install sqlalchemy
+
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
@@ -32,7 +35,7 @@ RUN pip install psycogreen
 ## Install pip dependencies for adhoc used odoo repositories
 # 
 # used by many pip packages
-RUN apt-get install -y python-dev
+RUN apt-get install -y python-dev python-pymssql
 
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
