@@ -35,7 +35,10 @@ RUN pip install psycogreen
 ## Install pip dependencies for adhoc used odoo repositories
 # 
 # used by many pip packages
-RUN apt-get install -y python-dev python-pymssql
+RUN apt-get install -y python-dev freetds-dev 
+
+# Freetds an pymssql added in conjunction
+RUN pip install pymssql
 
 # odoo-extra
 RUN apt-get install -y python-matplotlib font-manager
@@ -127,6 +130,7 @@ WORKDIR /opt/odoo/stable-addons/bmya/
 
 RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
 RUN git clone https://github.com/bmya/server-tools.git
+RUN git clone https://github.com/bmya/margin-analysis.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
 RUN git clone -b bmya_custom https://github.com/bmya/odoo-support.git
