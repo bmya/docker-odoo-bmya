@@ -68,7 +68,8 @@ RUN pip install suds
 
 # instala pyafip desde google code usando mercurial
 # M2Crypto suponemos que no haria falta ahora
-RUN hg clone https://code.google.com/p/pyafipws
+#RUN hg clone https://code.google.com/p/pyafipws
+RUN git clone https://github.com/bmya/pyafipws.git
 WORKDIR /pyafipws/
 # ADD ./requirements.txt /pyafipws/
 RUN pip install -r requirements.txt
