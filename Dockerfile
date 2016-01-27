@@ -134,7 +134,7 @@ RUN git clone https://github.com/bmya/server-tools.git
 RUN git clone https://github.com/bmya/margin-analysis.git
 RUN git clone https://github.com/bmya/pos-addons.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
-RUN git clone -b bmya_custom https://github.com/bmya/odoo-support.git
+RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
 
 # Eliminado para evitar la gran instalación de dependencias que tiene
 # (Por ahora para tenerlo estable)
@@ -147,20 +147,15 @@ RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/tkobr-addons.git tko
 
+WORKDIR /opt/odoo/stable-addons/bmya/
+RUN git clone -b 8.0 https://github.com/odoo-bmya-cl.git
+
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
-RUN git clone https://github.com/odoo-chile/l10n_cl_banks_sbif.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_base.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_base_rut.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_financial_indicators.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_hr_payroll.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_invoice.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_account_vat_ledger.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_partner_activities.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_toponyms.git
-RUN git clone https://github.com/odoo-chile/l10n_cl_vat.git
-RUN git clone https://github.com/odoo-chile/base_state_ubication.git
-RUN git clone https://github.com/odoo-chile/decimal_precision_currency.git
-RUN git clone https://github.com/odoo-chile/invoice_printed.git
+RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_toponyms.git
+RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_vat.git
+RUN git clone -b 8.0 https://github.com/odoo-chile/base_state_ubication.git
+RUN git clone -b 8.0 https://github.com/odoo-chile/decimal_precision_currency.git
+RUN git clone -b 8.0 https://github.com/odoo-chile/invoice_printed.git
 
 WORKDIR /opt/odoo/stable-addons/oca/
 RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
