@@ -148,7 +148,7 @@ RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/tkobr-addons.git tko
 
 WORKDIR /opt/odoo/stable-addons/bmya/
-RUN git clone -b 8.0 https://github.com/odoo-bmya-cl.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
 
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
 RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_toponyms.git
