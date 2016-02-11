@@ -145,7 +145,7 @@ RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
 RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
-RUN git clone -b 8.0 https://github.com/bmya/tkobr-addons.git tko
+RUN git clone -b bmya_custom https://github.com/bmya/tkobr-addons.git tko
 
 WORKDIR /opt/odoo/stable-addons/bmya/
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git odoo-chile
