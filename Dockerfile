@@ -97,6 +97,7 @@ RUN pip install xlrd
 # create directories for repos
 RUN mkdir -p /opt/odoo/stable-addons/oca
 RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-chile
+RUN mkdir -p /opt/odoo/stable-addons/bmya/odoo-bmya-cl
 RUN mkdir -p /opt/odoo/.filelocal/odoo
 RUN mkdir -p /var/lib/odoo/backups/synced
 
@@ -123,35 +124,31 @@ RUN pip install BeautifulSoup4
 # OCA knowledge
 RUN pip install python-magic
 
-# odoo support
+# odoo suspport
 RUN pip install erppeek
 
 # Instalación de repositorios varios BMyA
 WORKDIR /opt/odoo/stable-addons/bmya/
-
-RUN git clone -b bmya_custom https://github.com/bmya/odoo-addons.git
-RUN git clone https://github.com/bmya/server-tools.git
-RUN git clone https://github.com/bmya/margin-analysis.git
-RUN git clone https://github.com/bmya/pos-addons.git
-RUN git clone https://github.com/bmya/ws-zilinkas.git
-RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
-
 # Eliminado para evitar la gran instalación de dependencias que tiene
 # (Por ahora para tenerlo estable)
 # RUN git clone https://github.com/bmya/addons-vauxoo.git
-RUN git clone https://github.com/bmya/addons-yelizariev.git
 
+RUN git clone -b 8.0 https://github.com/bmya/server-tools.git
+RUN git clone -b 8.0 https://github.com/bmya/margin-analysis.git
+RUN git clone -b 8.0 https://github.com/bmya/pos-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
 RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-addons.git
 RUN git clone -b bmya_custom https://github.com/bmya/tkobr-addons.git tko
-
-WORKDIR /opt/odoo/stable-addons/bmya/
-RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git odoo-chile
+RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
+RUN git clone https://github.com/bmya/addons-yelizariev.git
+RUN git clone https://github.com/bmya/ws-zilinkas.git
 
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
-RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_toponyms.git
+RUN git clone -b alphatop_custom https://github.com/odoo-chile/l10n_cl_toponyms.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_vat.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/base_state_ubication.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/decimal_precision_currency.git
@@ -182,6 +179,6 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 
 RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/dist-packages/openerp/addons/portal/__openerp__.py
 
-RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
+# RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
 
 USER odoo
