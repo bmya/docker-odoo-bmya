@@ -142,6 +142,7 @@ RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-addons.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-single-adv.git
 RUN git clone -b bmya_custom https://github.com/bmya/tkobr-addons.git tko
 RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
