@@ -27,6 +27,8 @@ RUN apt-get update \
 RUN pip install urllib3
 RUN pip install sqlalchemy
 
+# woocommerce dependency
+RUN pip install woocommerce
 
 # woocommerce dependency
 RUN pip install woocommerce
@@ -91,7 +93,10 @@ RUN pip install openerp-client-lib fabric erppeek fabtools
 RUN pip install xmltodict
 RUN pip install elaphe
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 15bf7c22a2136c53ae39eaa6706cc98ffefdd758
 RUN pip install pysftp
 
 # oca reports
