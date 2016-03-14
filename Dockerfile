@@ -27,6 +27,8 @@ RUN apt-get update \
 RUN pip install urllib3
 RUN pip install sqlalchemy
 
+# woocommerce dependency
+RUN pip install woocommerce
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
@@ -87,6 +89,8 @@ RUN pip install openerp-client-lib fabric erppeek fabtools
 # dte implementation
 RUN pip install xmltodict
 RUN pip install elaphe
+
+RUN pip install pysftp
 
 # oca reports
 RUN pip install xlwt
