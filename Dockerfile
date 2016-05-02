@@ -2,7 +2,6 @@ FROM bmya/odoo:latest
 MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
 # with custom references
-
 # install some dependencies
 USER root
 
