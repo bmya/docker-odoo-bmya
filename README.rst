@@ -48,7 +48,7 @@ ALTER USER odoo WITH SUPERUSER;
 
 ## 8) Correr un contenedor de Odoo conectando postgres:
 docker run -d \
--v /opt/odoo/test-addons:/mnt/test-addons \
+-v /opt/odoo/extra-addons:/mnt/extra-addons \
 -p 127.0.0.1:8069:8069 \
 --name odoo \
 --link postgres:db -t bmya/odoo-bmya:latest
