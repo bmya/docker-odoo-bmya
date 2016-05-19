@@ -21,7 +21,7 @@ ENV LC_ALL C.UTF-8
 # adds slqalchemy
 RUN apt-get update \
         && apt-get install -y \
-        python-pip git vim
+        python-pip git vim ghostscript
 
 # 
 RUN pip install urllib3
@@ -133,6 +133,13 @@ RUN pip install BeautifulSoup4
 
 # OCA knowledge
 RUN pip install python-magic
+
+# l10n_cl_dte exclusive
+RUN apt-get -y install xmlsec1
+RUN apt-get -y install libxml2-dev libxmlsec1-dev
+RUN pip install dm.xmlsec.binding
+RUN pip install SOAPpy
+# RUN pip install fs
 
 # odoo suspport
 RUN pip install erppeek
