@@ -96,6 +96,7 @@ RUN pip install elaphe
 #RUN pip install hashlib
 RUN pip install cchardet
 RUN pip install lxml
+RUN pip install xmldsig
 
 RUN pip install pysftp
 
