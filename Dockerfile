@@ -17,11 +17,11 @@ ENV LANG C.UTF-8
 ENV LANGUAGE C.UTF-8
 ENV LC_ALL C.UTF-8
 
+
 # Install some deps
 # adds slqalchemy
-RUN apt-get update \
-        && apt-get install -y \
-        python-pip git vim ghostscript
+RUN apt-get update && apt-get install -y python-pip git vim
+RUN apt-get install -y ghostscript
 
 # 
 RUN pip install urllib3
