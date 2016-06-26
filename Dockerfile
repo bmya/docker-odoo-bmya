@@ -29,12 +29,15 @@ RUN pip install urllib3
 # debug database version
 # RUN pip install passlib
 
+# NECESATIOS PARA SIGNXML
+# RUN apt-get install -y libffi-dev libssl-dev libssl-dev libxml2-dev libxslt-dev python-dev lib32z1-dev liblz-dev
 
 # woocommerce dependency
 RUN pip install woocommerce
 
 # Workers and longpolling dependencies
 RUN apt-get install -y python-gevent
+
 RUN pip install psycogreen
 
 ## Install pip dependencies for adhoc used odoo repositories
