@@ -99,7 +99,7 @@ RUN pip install elaphe
 #RUN pip install hashlib
 RUN pip install cchardet
 RUN pip install lxml
-RUN pip install signxml
+# RUN pip install signxml
 
 RUN pip install pysftp
 
