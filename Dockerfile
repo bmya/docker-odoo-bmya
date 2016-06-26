@@ -157,7 +157,7 @@ RUN git clone -b 8.0 https://github.com/bmya/pos-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
 RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
-RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
+RUN git clone -b 8.0-efactura https://github.com/bmya/odoo-bmya-cl.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-addons.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-single-adv.git
