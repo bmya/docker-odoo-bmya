@@ -27,7 +27,7 @@ sudo service docker restart
 ## 5) Correr un contenedor docker con postgres a partir
 de la imágen oficial de postgres
 
-docker run -d --name="postgres" \
+docker run -d --restart="always" --name="postgres" \
 -v /opt/database:/var/lib/postgresql/data \
 -v /var/log/postgresql:/var/log/postgresql postgres:9.4
 
@@ -36,9 +36,7 @@ En caso que además desees que el contenedor se reinicie al reiniciar el equipo,
 ## 6) Conectarse al contenedor postgres y crear un usuario "odoo" en la imagen de postgres
 Esto debe ser hecho por única vez:
 
-docker run -it --link postgres:postgres --rm postgres \
-sh -c 'exec psql -h "$POSTGRES_PORT_5432_TCP_ADDR" \
--p "$POSTGRES_PORT_5432_TCP_PORT" -U postgres'
+docker exec -ti postgres sh -c 'exec psql -U postgres'
 
 CREATE USER odoo WITH PASSWORD 'odoo';
 ALTER USER odoo WITH SUPERUSER;
@@ -47,9 +45,8 @@ ALTER USER odoo WITH SUPERUSER;
 \q
 
 ## 8) Correr un contenedor de Odoo conectando postgres:
-docker run -d \
+docker run -d --restart="always" --name odoo \
 -v /opt/odoo/extra-addons:/mnt/extra-addons \
 -p 127.0.0.1:8069:8069 \
---name odoo \
 --link postgres:db -t bmya/odoo-bmya:latest
 

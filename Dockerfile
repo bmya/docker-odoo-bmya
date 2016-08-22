@@ -29,8 +29,9 @@ RUN pip install urllib3
 # debug database version
 # RUN pip install passlib
 
-# NECESATIOS PARA SIGNXML
-# RUN apt-get install -y libffi-dev libssl-dev libssl-dev libxml2-dev libxslt-dev python-dev lib32z1-dev liblz-dev
+# letsencrypt dependencies:
+RUN pip install acme-tiny
+RUN sudo pip install IPy
 
 # woocommerce dependency
 RUN pip install woocommerce
@@ -53,21 +54,16 @@ RUN apt-get install -y python-matplotlib font-manager
 
 # odoo argentina (nuevo modulo de FE).
 RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
+# NECESATIOS PARA SIGNXML
+RUN apt-get install -y libxml2-dev libxslt-dev python-dev lib32z1-dev liblz-dev
 
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds
+RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds cryptography certifi
 
 # odoo bmya cambiado de orden (antes o despues de odoo argentina)
 # to be removed when we remove crypto
 RUN apt-get install -y swig libssl-dev
 # to be removed when we remove crypto
 RUN pip install suds
-
-
-#### daniel # para facturacion electrónica
-# sudo apt-get -y install swig
-# apt-get -y install python-m2crypto
-# vpip install suds
-
 
 # Agregado por Daniel Blanco para ver si soluciona el problema de la falta de la biblioteca pysimplesoap
 # RUN git clone https://github.com/pysimplesoap/pysimplesoap.git
@@ -96,10 +92,10 @@ RUN pip install openerp-client-lib fabric erppeek fabtools
 RUN pip install xmltodict
 RUN pip install dicttoxml
 RUN pip install elaphe
-#RUN pip install hashlib
+# RUN pip install hashlib
 RUN pip install cchardet
 RUN pip install lxml
-# RUN pip install signxml
+RUN pip install signxml
 
 RUN pip install pysftp
 
@@ -118,6 +114,7 @@ RUN mkdir -p /var/lib/odoo/backups/synced
 # update openerp-server.conf file (todo: edit with "sed")
 COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
+RUN chmod 644 /etc/odoo/openerp-server.conf
 RUN chown -R odoo /opt/odoo
 # RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/extra-addons
@@ -139,9 +136,9 @@ RUN pip install BeautifulSoup4
 RUN pip install python-magic
 
 # l10n_cl_dte exclusive
-RUN apt-get -y install xmlsec1
-RUN apt-get -y install libxml2-dev libxmlsec1-dev
-RUN pip install dm.xmlsec.binding
+# RUN apt-get -y install xmlsec1
+# RUN apt-get -y install libxml2-dev libxmlsec1-dev
+# RUN pip install dm.xmlsec.binding
 RUN pip install SOAPpy
 # RUN pip install fs
 
@@ -154,23 +151,51 @@ WORKDIR /opt/odoo/stable-addons/bmya/
 # (Por ahora para tenerlo estable)
 # RUN git clone https://github.com/bmya/addons-vauxoo.git
 
+# Reemplaza a Odoo Addons
+RUN git clone -b 8.0 https://github.com/bmya/sale.git
+RUN git clone -b 8.0 https://github.com/bmya/product.git
+RUN git clone -b 8.0 https://github.com/bmya/survey.git
+RUN git clone -b 8.0 https://github.com/bmya/account-financial-tools.git
+RUN git clone -b 8.0 https://github.com/bmya/partner.git
+RUN git clone -b 8.0 https://github.com/bmya/stock.git
+RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
+RUN git clone -b 8.0 https://github.com/bmya/project.git
+RUN git clone -b 8.0 https://github.com/bmya/adhoc-project.git
+RUN git clone -b 8.0 https://github.com/bmya/account-payment.git
+RUN git clone -b 8.0 https://github.com/bmya/account-invoicing.git
+RUN git clone -b 8.0 https://github.com/bmya/website.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
+RUN git clone -b 8.0 https://github.com/bmya/multi-company.git
+RUN git clone -b 8.0 https://github.com/bmya/account-analytic.git
+RUN git clone -b 8.0 https://github.com/bmya/purchase.git
+RUN git clone -b 8.0 https://github.com/bmya/reporting-engine.git
+RUN git clone -b 8.0 https://github.com/bmya/crm.git
+RUN git clone -b 8.0 https://github.com/bmya/adhoc-crm.git
+RUN git clone -b 8.0 https://github.com/bmya/miscellaneous.git
+RUN git clone -b 8.0 https://github.com/bmya/surveyor.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-logistic.git
+
+# Modulos de OCA
 RUN git clone -b 8.0 https://github.com/bmya/server-tools.git
 RUN git clone -b 8.0 https://github.com/bmya/margin-analysis.git
 RUN git clone -b 8.0 https://github.com/bmya/pos-addons.git
+
+# Localización Argentina
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
-RUN git clone -b 8.0 https://github.com/bmya/odoo-web.git
-RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
-RUN git clone -b 8.0-efactura https://github.com/bmya/odoo-bmya-cl.git
+
+# Localización Chilena (Con Factura Electrónica LibreDTE)
+RUN git clone -b 8.0_libredte https://github.com/bmya/odoo-bmya-cl.git
+
+# Otras dependencias de BMyA
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
-RUN git clone -b 8.0 https://github.com/bmya/odoo-addons.git
+RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
+
 RUN git clone -b 8.0 https://github.com/bmya/odoo-single-adv.git
 RUN git clone -b bmya_custom https://github.com/bmya/tkobr-addons.git tko
-RUN git clone -b bmya_custom2 https://github.com/bmya/odoo-support.git
 RUN git clone https://github.com/bmya/addons-yelizariev.git
 RUN git clone https://github.com/bmya/ws-zilinkas.git
 
 WORKDIR /opt/odoo/stable-addons/bmya/odoo-chile/
-# RUN git clone -b alphatop_custom https://github.com/odoo-chile/l10n_cl_toponyms.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/l10n_cl_vat.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/base_state_ubication.git
 RUN git clone -b 8.0 https://github.com/odoo-chile/decimal_precision_currency.git
@@ -202,6 +227,5 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/docs_client_lib.py
 RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/installer.py
 RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/report_aeroo.py
-
 
 USER odoo
