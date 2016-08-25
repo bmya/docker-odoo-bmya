@@ -179,6 +179,7 @@ RUN git clone -b 8.0 https://github.com/bmya/odoo-logistic.git
 RUN git clone -b 8.0 https://github.com/bmya/server-tools.git
 RUN git clone -b 8.0 https://github.com/bmya/margin-analysis.git
 RUN git clone -b 8.0 https://github.com/bmya/pos-addons.git
+RUN git clone -b 8.0 https://github.com/bmya/pos.git
 
 # Localización Argentina
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
@@ -202,9 +203,10 @@ RUN git clone -b 8.0 https://github.com/odoo-chile/decimal_precision_currency.gi
 RUN git clone -b 8.0 https://github.com/odoo-chile/invoice_printed.git
 
 WORKDIR /opt/odoo/stable-addons/oca/
-RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 RUN git clone -b 8.0 https://github.com/OCA/knowledge.git
 RUN git clone -b 8.0 https://github.com/OCA/web.git
+RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
+RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
 WORKDIR /opt/odoo/stable-addons/
