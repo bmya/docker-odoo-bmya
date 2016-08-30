@@ -116,7 +116,7 @@ COPY ./openerp-server.conf /etc/odoo/
 RUN chown odoo /etc/odoo/openerp-server.conf
 RUN chmod 644 /etc/odoo/openerp-server.conf
 RUN chown -R odoo /opt/odoo
-# RUN chown -R odoo /opt/odoo/stable-addons
+RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /var/lib/odoo
 # RUN chown -R odoo /mnt/filelocal/odoo
