@@ -185,7 +185,7 @@ RUN git clone -b 8.0 https://github.com/bmya/pos.git
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 
 # Localización Chilena (Con Factura Electrónica LibreDTE)
-RUN git clone -b 8.0_libredte https://github.com/bmya/odoo-bmya-cl.git
+RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
 
 # Otras dependencias de BMyA
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
