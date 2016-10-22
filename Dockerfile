@@ -72,7 +72,7 @@ RUN pip install suds
 
 # instala pyafip desde google code usando mercurial
 # M2Crypto suponemos que no haria falta ahora
-#RUN hg clone https://code.google.com/p/pyafipws
+# RUN hg clone https://code.google.com/p/pyafipws
 RUN git clone https://github.com/bmya/pyafipws.git
 WORKDIR /pyafipws/
 # ADD ./requirements.txt /pyafipws/
@@ -184,13 +184,12 @@ RUN git clone -b 8.0 https://github.com/bmya/pos.git
 # Localización Argentina
 RUN git clone -b 8.0 https://github.com/bmya/odoo-argentina.git
 
-# Localización Chilena (Con Factura Electrónica LibreDTE)
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya-cl.git
 
 # Otras dependencias de BMyA
 RUN git clone -b 8.0 https://github.com/bmya/odoo-bmya.git
 RUN git clone -b 8.0 https://github.com/bmya/website-addons.git
-
+# Otras (todo: revisar el tko porque hay módulos que no conviene instalar)
 RUN git clone -b 8.0 https://github.com/bmya/odoo-single-adv.git
 RUN git clone -b bmya_custom https://github.com/bmya/tkobr-addons.git tko
 RUN git clone https://github.com/bmya/addons-yelizariev.git
