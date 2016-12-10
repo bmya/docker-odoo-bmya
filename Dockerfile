@@ -138,11 +138,11 @@ RUN pip install BeautifulSoup4
 RUN pip install python-magic
 
 # l10n_cl_dte exclusive
-# RUN apt-get -y install xmlsec1
-# RUN apt-get -y install libxml2-dev libxmlsec1-dev
-# RUN pip install dm.xmlsec.binding
+RUN apt-get -y install xmlsec1
+RUN apt-get -y install libxml2-dev libxmlsec1-dev
+RUN pip install dm.xmlsec.binding
 RUN pip install SOAPpy
-# RUN pip install fs
+RUN pip install fs
 
 # odoo suspport
 RUN pip install erppeek
