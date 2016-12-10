@@ -1,0 +1,34 @@
+version: '2'
+services:
+ odoo:
+    container_name: odoo_bmya
+    image: jalvcl/odoo_bmya_cl_dte:20.03.02
+    depends_on:
+        - db
+    ports:
+          - "8069:8069"
+    environment:
+        - PGHOST=db
+        - PGUSER=odoo
+        - PGPASSWORD=odoo
+    tty: true
+    volumes:
+        - ~/odoo-docker-data/mnt/odoo/extra-addons:/mnt/extra-addons
+        - ~/odoo-docker-data/mnt/filelocal/odoo:/mnt/filelocal/odoo
+        - ~/odoo-docker-data/var/lib/odoo:/var/lib/odoo
+#Path a la configuración personal
+        - /Volumes/T06_Files/GitHub/01_odoo_macOS/99_odoo_docker_bmya:/etc/odoo
+    links:
+        - db:db
+
+ db:
+    container_name: db
+    image: postgres:9.4
+    ports:
+        - "5432:5432"
+    environment:
+        - POSTGRES_USER=odoo
+        - POSTGRES_PASSWORD=odoo
+        - PGDATA=/var/lib/postgresql/data
+    volumes:
+        - ~/odoo-docker-data/var/lib/postgresql/data:/var/lib/postgresql/data
