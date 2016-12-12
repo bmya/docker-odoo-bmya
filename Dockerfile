@@ -138,11 +138,11 @@ RUN pip install BeautifulSoup4
 RUN pip install python-magic
 
 # l10n_cl_dte exclusive
-# RUN apt-get -y install xmlsec1
-# RUN apt-get -y install libxml2-dev libxmlsec1-dev
-# RUN pip install dm.xmlsec.binding
+RUN apt-get -y install xmlsec1
+RUN apt-get -y install libxml2-dev libxmlsec1-dev
+RUN pip install dm.xmlsec.binding
 RUN pip install SOAPpy
-# RUN pip install fs
+RUN pip install fs
 
 # odoo suspport
 RUN pip install erppeek
@@ -209,12 +209,12 @@ RUN git clone -b 8.0 https://github.com/OCA/web.git
 RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
 RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 # MAGENTO
-RUN git clone -B 8.0 https://github.com/OCA/connector.git
-RUN git clone -B 8.0 https://github.com/OCA/connector-ecommerce.git
-RUN git clone -B 8.0 https://github.com/OCA/connector-magento.git
-RUN git clone -B 8.0 https://github.com/OCA/e-commerce.git
-RUN git clone -B 8.0 https://github.com/OCA/product-attribute.git
-RUN git clone -B 8.0 https://github.com/OCA/sale-workflow.git
+RUN git clone -b 8.0 https://github.com/OCA/connector.git
+RUN git clone -b 8.0 https://github.com/OCA/connector-ecommerce.git
+RUN git clone -b 8.0 https://github.com/OCA/connector-magento.git
+RUN git clone -b 8.0 https://github.com/OCA/e-commerce.git
+RUN git clone -b 8.0 https://github.com/OCA/product-attribute.git
+RUN git clone -b 8.0 https://github.com/OCA/sale-workflow.git
 
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
