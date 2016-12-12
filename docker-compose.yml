@@ -4,7 +4,7 @@ services:
     container_name: odoo_bmya
     image: jalvcl/odoo_bmya_cl_dte:20.03.02
     depends_on:
-        - db
+        - db_bmya
     ports:
           - "8069:8069"
     environment:
@@ -19,10 +19,10 @@ services:
 #Path a la configuración personal
         - /Volumes/T06_Files/GitHub/01_odoo_macOS/99_odoo_docker_bmya:/etc/odoo
     links:
-        - db:db
+        - db_bmya:db
 
- db:
-    container_name: db
+ db_bmya:
+    container_name: db_bmya
     image: postgres:9.4
     ports:
         - "5432:5432"
