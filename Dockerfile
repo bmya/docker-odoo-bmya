@@ -50,7 +50,7 @@ RUN pip install psycogreen
 RUN pip install pymssql
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds cryptography certifi
 
-RUN git clone https://github.com/bmya/pyafipws-1.git
+RUN git clone https://github.com/bmya/pyafipws-1.git pyafipws
 WORKDIR /pyafipws/
 # ADD ./requirements.txt /pyafipws/
 RUN pip install -r requirements.txt
