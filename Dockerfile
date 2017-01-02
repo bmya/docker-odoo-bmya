@@ -20,91 +20,52 @@ ENV LC_ALL C.UTF-8
 
 # Install some deps
 # adds slqalchemy
-RUN apt-get update && apt-get install -y python-pip git vim
-RUN apt-get install -y ghostscript
+RUN apt-get update && apt-get install -y python-pip \
+                                         git vim mercurial \
+                                         ghostscript \
+										 python-gevent \
+										 python-dev \
+										 freetds-dev \
+										 python-matplotlib \
+										 font-manager \
+										 swig \
+										 libffi-dev \
+										 libssl-dev \
+										 python-m2crypto \
+										 python-httplib2 \
+										 libxml2-dev \
+										 libxslt-dev \
+										 python-dev \
+										 lib32z1-dev \
+										 liblz-dev \
+										 libcups2-dev
 
-# 
+RUN pip install suds
 RUN pip install urllib3
-# RUN pip install sqlalchemy
-# debug database version
-# RUN pip install passlib
-
-# letsencrypt dependencies:
 RUN pip install acme-tiny
 RUN sudo pip install IPy
-
-# woocommerce dependency
 RUN pip install woocommerce
 RUN pip install magento
-
-
-# Workers and longpolling dependencies
-RUN apt-get install -y python-gevent
-
 RUN pip install psycogreen
-
-## Install pip dependencies for adhoc used odoo repositories
-# 
-# used by many pip packages
-RUN apt-get install -y python-dev freetds-dev
-
-# Freetds an pymssql added in conjunction
 RUN pip install pymssql
-
-# odoo-extra
-RUN apt-get install -y python-matplotlib font-manager
-
-# odoo argentina (nuevo modulo de FE).
-RUN apt-get install -y swig libffi-dev libssl-dev python-m2crypto python-httplib2 mercurial
-# NECESATIOS PARA SIGNXML
-RUN apt-get install -y libxml2-dev libxslt-dev python-dev lib32z1-dev liblz-dev
-
 RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds cryptography certifi
 
-# odoo bmya cambiado de orden (antes o despues de odoo argentina)
-# to be removed when we remove crypto
-RUN apt-get install -y swig libssl-dev
-# to be removed when we remove crypto
-RUN pip install suds
-
-# Agregado por Daniel Blanco para ver si soluciona el problema de la falta de la biblioteca pysimplesoap
-# RUN git clone https://github.com/pysimplesoap/pysimplesoap.git
-# WORKDIR /pysimplesoap/
-# RUN python setup.py install
-
-# instala pyafip desde google code usando mercurial
-# M2Crypto suponemos que no haria falta ahora
-# RUN hg clone https://code.google.com/p/pyafipws
-RUN git clone https://github.com/bmya/pyafipws.git
+RUN git clone https://github.com/bmya/pyafipws-1.git
 WORKDIR /pyafipws/
 # ADD ./requirements.txt /pyafipws/
 RUN pip install -r requirements.txt
 RUN python setup.py install
 RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
 
-# RUN git clone https://github.com/reingart/pyafipws.git
-# WORKDIR /pyafipws/
-# RUN python setup.py install
-# RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
-
-# odoo etl, infra and others
 RUN pip install openerp-client-lib fabric erppeek fabtools
-
-# dte implementation
 RUN pip install xmltodict
 RUN pip install dicttoxml
 RUN pip install elaphe
-# RUN pip install hashlib
 RUN pip install cchardet
 RUN pip install lxml
 RUN pip install signxml
-
 RUN pip install pysftp
-
-# oca reports
 RUN pip install xlwt
-
-# odoo kineses
 RUN pip install xlrd
 
 # create directories for repos
@@ -121,13 +82,9 @@ RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /var/lib/odoo
-# RUN chown -R odoo /mnt/filelocal/odoo
 
 # oca partner contacts
 RUN pip install unicodecsv
-
-# aeroo direct print
-RUN apt-get install -y libcups2-dev
 RUN pip install git+https://github.com/aeroo/aeroolib.git@master
 RUN pip install pycups==1.9.68
 
@@ -137,21 +94,12 @@ RUN pip install BeautifulSoup4
 # OCA knowledge
 RUN pip install python-magic
 
-# l10n_cl_dte exclusive
-# RUN apt-get -y install xmlsec1
-# RUN apt-get -y install libxml2-dev libxmlsec1-dev
-# RUN pip install dm.xmlsec.binding
 RUN pip install SOAPpy
-# RUN pip install fs
 
 # odoo suspport
 RUN pip install erppeek
 
-# Instalación de repositorios varios BMyA
 WORKDIR /opt/odoo/stable-addons/bmya/
-# Eliminado para evitar la gran instalación de dependencias que tiene
-# (Por ahora para tenerlo estable)
-# RUN git clone https://github.com/bmya/addons-vauxoo.git
 
 # Reemplaza a Odoo Addons
 RUN git clone -b 8.0 https://github.com/bmya/sale.git
@@ -209,12 +157,12 @@ RUN git clone -b 8.0 https://github.com/OCA/web.git
 RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
 RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 # MAGENTO
-RUN git clone -B 8.0 https://github.com/OCA/connector.git
-RUN git clone -B 8.0 https://github.com/OCA/connector-ecommerce.git
-RUN git clone -B 8.0 https://github.com/OCA/connector-magento.git
-RUN git clone -B 8.0 https://github.com/OCA/e-commerce.git
-RUN git clone -B 8.0 https://github.com/OCA/product-attribute.git
-RUN git clone -B 8.0 https://github.com/OCA/sale-workflow.git
+RUN git clone -b 8.0 https://github.com/OCA/connector.git
+RUN git clone -b 8.0 https://github.com/OCA/connector-ecommerce.git
+RUN git clone -b 8.0 https://github.com/OCA/connector-magento.git
+RUN git clone -b 8.0 https://github.com/OCA/e-commerce.git
+RUN git clone -b 8.0 https://github.com/OCA/product-attribute.git
+RUN git clone -b 8.0 https://github.com/OCA/sale-workflow.git
 
 
 RUN chown -R odoo:odoo /opt/odoo/stable-addons
@@ -235,8 +183,9 @@ RUN sed  -i  "s/'auto_install': True/'auto_install': False/" /usr/lib/python2.7/
 # RUN sed  -i  "s/'auto_install': False/'auto_install': True/" /opt/odoo/stable-addons/bmya/addons-yelizariev/web_logo/__openerp__.py
 
 # Change default aeroo host name to match docker name
-RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/docs_client_lib.py
-RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/installer.py
-RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/report_aeroo.py
+# RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/docs_client_lib.py
+RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/*.py
+# RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/installer.py
+# RUN sed  -i  "s/localhost/aeroo/" /opt/odoo/stable-addons/aeroo_reports/report_aeroo/report_aeroo.py
 
 USER odoo
