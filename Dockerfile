@@ -56,7 +56,7 @@ WORKDIR /pyafipws/
 # ADD ./requirements.txt /pyafipws/
 RUN pip install -r requirements.txt
 RUN python setup.py install
-# RUN chmod 777 -R /usr/local/lib/python2.7/dist-packages/pyafipws/
+RUN chmod -R 777 /usr/local/lib/python2.7/dist-packages/PyAfipWs-2.7.0-py2.7.egg
 
 RUN pip install openerp-client-lib fabric erppeek fabtools
 RUN pip install xmltodict
