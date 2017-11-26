@@ -38,36 +38,20 @@ RUN apt-get update && apt-get install -y python-pip \
 										 python-dev \
 										 lib32z1-dev \
 										 liblz-dev \
-										 libcups2-dev
+										 libcups2-dev \
+										 libssl-dev libxml2-dev libxmlsec1-dev pkg-config
 
-RUN pip install suds
-RUN pip install urllib3
-RUN pip install acme-tiny
-RUN sudo pip install IPy
-RUN pip install woocommerce
-RUN pip install magento
-RUN pip install psycogreen
-RUN pip install pymssql
-RUN pip install geopy==0.95.1 BeautifulSoup pyOpenSSL suds cryptography certifi
+WORKDIR /
+ADD ./requirements.txt /
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 RUN git clone https://github.com/bmya/pyafipws-1.git /pyafipws/
 WORKDIR /pyafipws/
 
 # ADD ./requirements.txt /pyafipws/
-RUN pip install -r requirements.txt
 RUN python setup.py install
 RUN chmod -R 777 /usr/local/lib/python2.7/dist-packages/PyAfipWs-2.7.0-py2.7.egg
-
-RUN pip install openerp-client-lib fabric erppeek fabtools
-RUN pip install xmltodict
-RUN pip install dicttoxml
-RUN pip install elaphe
-RUN pip install cchardet
-RUN pip install lxml
-RUN pip install signxml
-RUN pip install pysftp
-RUN pip install xlwt
-RUN pip install xlrd
 
 # create directories for repos
 RUN mkdir -p /opt/odoo/stable-addons/oca
@@ -83,22 +67,6 @@ RUN chown -R odoo /opt/odoo
 RUN chown -R odoo /opt/odoo/stable-addons
 RUN chown -R odoo /mnt/extra-addons
 RUN chown -R odoo /var/lib/odoo
-
-# oca partner contacts
-RUN pip install unicodecsv
-RUN pip install git+https://github.com/aeroo/aeroolib.git@master
-RUN pip install pycups==1.9.68
-
-# akretion/odoo-usability
-RUN pip install BeautifulSoup4
-
-# OCA knowledge
-RUN pip install python-magic
-
-RUN pip install SOAPpy
-
-# odoo suspport
-RUN pip install erppeek
 
 WORKDIR /opt/odoo/stable-addons/bmya/
 

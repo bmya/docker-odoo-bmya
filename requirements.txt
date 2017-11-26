@@ -1,43 +1,41 @@
-# unicodecsv
-# git+https://github.com/aeroo/aeroolib.git@master
-# pycups==1.9.68
-# BeautifulSoup4
-# python-magic
-# gdata
-# pysimplesoap
-# fpdf
-httplib2>=0.7
-pysimplesoap==1.08.8
-fpdf>=1.7.2
-dbf>=0.88.019
-Pillow>=2.0.0
-# requests>=2.6.0
-# pywin32==219
-# xmltodict
-# elaphe
-suds
-urllib3
 acme-tiny
-IPy
-woocommerce
-magento
-psycogreen
-pymssql
-geopy==0.95.1 BeautifulSoup pyOpenSSL suds cryptography certifi
-openerp-client-lib
-fabric
-erppeek
-fabtools
-xmltodict
+BeautifulSoup
+BeautifulSoup4
+cchardet
+certifi
+cryptography
+dbf>=0.88.019
 dicttoxml
 elaphe
-cchardet
-lxml
-signxml
-pysftp
-xlwt
-xlrd
-BeautifulSoup4
-python-magic
-SOAPpy
 erppeek
+fabric
+fabtools
+fpdf>=1.7.2
+geopy==0.95.1
+git+https://github.com/aeroo/aeroolib.git@master
+httplib2>=0.7
+IPy
+lxml
+magento
+m2crypto==0.24.0
+# m2crypto>=0.18
+openerp-client-lib
+Pillow>=2.0.0
+psycogreen
+pycups==1.9.68
+pymssql
+pyOpenSSL
+pysftp
+pysimplesoap==1.08.8
+python-magic
+signxml
+SOAPpy
+suds-jurko
+unicodecsv
+urllib3
+woocommerce
+xlrd
+xlwt
+xmltodict
+xmlsec==1.0.9
+#pywin32==219
