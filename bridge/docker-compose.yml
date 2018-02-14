@@ -1,0 +1,30 @@
+version: '2'
+services:
+    odoo:
+        container_name: odoo11e
+        image: hub.bmya.cl:5000/odoo-bmya11:l01
+        command: -- -c /etc/odoo/odoo.conf 
+        # command: bash
+        networks:
+            - default
+            - pg_default
+        external_links:
+            - db:db
+        ports:
+            - "8089:8069"
+        volumes:
+            - odoo-data:/var/lib/odoo
+            - ./extra-addons:/mnt/extra-addons
+            - ./conf:/etc/odoo
+        environment:
+            - DB_PORT_5432_TCP_ADDR=db
+            - DB_PORT_5432_TCP_PORT=5432
+            - DB_ENV_POSTGRES_USER=odoo
+            - DB_ENV_POSTGRES_PASSWORD=odoo
+networks:
+     default:
+         driver: bridge
+     pg_default:
+         external: true
+volumes:
+    odoo-data:

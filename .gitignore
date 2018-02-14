@@ -1,0 +1,6 @@
+.idea/
+extra-addons/
+*.pyc
+filestore/
+odoo/
+pg/
