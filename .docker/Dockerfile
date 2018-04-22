@@ -33,10 +33,3 @@ git
 RUN pip3 install --upgrade pip
 ADD ./requirements.txt .
 RUN pip3 install -r requirements.txt
-
-### RUN pip3 install pyOpenSSL
-
-#WORKDIR /opt/odoo
-#RUN git clone https://www.github.com/odoo/odoo.git --depth 1 --branch 11.0 --single-branch
-#RUN chown -R odoo:odoo .
-#WORKDIR /opt/odoo/odoo
