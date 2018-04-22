@@ -4,3 +4,5 @@ extra-addons/
 filestore/
 odoo/
 pg/
+conf/odoo.conf
+
