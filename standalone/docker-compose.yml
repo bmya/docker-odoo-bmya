@@ -1,11 +1,11 @@
 version: '2'
 services:
     db:
-        # restart: always
+        restart: always
         container_name: db
         image: postgres:9.5
         ports:
-          - "5433:5432"
+          - "127.0.0.1:5433:5432"
         environment:
           - PGDATA=/var/lib/postgresql/data/pgdata
           - POSTGRES_USER=odoo
@@ -13,14 +13,14 @@ services:
         volumes:
           - db-data:/var/lib/postgresql/data/pgdata
     odoo:
-        # restart: always
-        container_name: odoo10
+        restart: always
+        container_name: odoo11c
         image: hub.bmya.cl:5000/bmya-odoo11c:l02
         command: -- -c /etc/odoo/odoo.conf    
         depends_on:
             - db
         ports:
-            - "8069:8069"
+            - "127.0.0.1:8069:8069"
         volumes:
             - odoo-data:/var/lib/odoo
             - ./extra-addons:/mnt/extra-addons

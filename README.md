@@ -16,6 +16,14 @@ Ver instrucciones para instalar estos compoenentes en la siguiente url:
 
 ![Instalar Docker Compose](https://docs.docker.com/compose/install/)
 
+En particular, para Ubuntu 16.04 se puede instalar de la siguiente manera:
+
+```
+curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+```
+
 
 ## Modalidades de montaje
 Se proveen dos opciones de docker-compose.yml
@@ -34,6 +42,14 @@ Se denomina **bridge**, porque la configuración que se usa en el sistema permit
 conectar las redes de ambos docker-compose mediante un puente de redes.
 
 ### Cómo se usa
+
+- Una vez instalado docker, comience por descargar este repositorio:
+
+```
+cd ~
+git clone -b 11.0c https://github.com/bmya/docker-odoo-bmya.git odoo11c
+```
+
 Previo a correr, se debe decidir con qué imágen se desea utilizar. Las imágenes posibles son:
  
 - **Imágen privada de BMyA:** Esta imágen debe contar con soporte brindado por parte de BMyA
