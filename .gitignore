@@ -1,5 +1,5 @@
 .idea/
-extra-addons/
+extra-addons/*
 *.pyc
 filestore/
 odoo/

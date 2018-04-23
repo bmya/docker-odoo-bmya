@@ -15,7 +15,7 @@ services:
     odoo:
         # restart: always
         container_name: odoo10
-        image: hub.bmya.cl:5000/odoo10:l10
+        image: hub.bmya.cl:5000/bmya-odoo11c:l02
         command: -- -c /etc/odoo/odoo.conf    
         depends_on:
             - db

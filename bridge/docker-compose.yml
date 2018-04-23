@@ -2,7 +2,7 @@ version: '2'
 services:
     odoo:
         container_name: odoo11c
-        image: hub.bmya.cl:5000/odoo-bmya11c:l01
+        image: hub.bmya.cl:5000/bmya-odoo11c:l02
         command: -- -c /etc/odoo/odoo.conf 
         # command: bash
         networks:
