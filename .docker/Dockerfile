@@ -26,9 +26,13 @@ curl \
 sudo \
 gcc mc bzr \ 
 lptools make  \
-poppler-utils \  
+poppler-utils \
+build-essential libssl-dev libffi-dev python-dev python3-dev \
 antiword \
-git
+git \
+pkg-config \
+swig
+
 
 RUN pip3 install --upgrade pip
 ADD ./requirements.txt .
