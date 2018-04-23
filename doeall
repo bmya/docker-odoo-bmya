@@ -1,28 +1,5 @@
 #!/bin/bash
-
-#docker rm -f db
-docker rm -f odoo11
-
-#docker run -d --name="db" \
-#-p 127.0.0.1:5434:5432 \
-#-e POSTGRES_USER=odoo \
-#-e POSTGRES_PASSWORD=odoo \
-#-v /Users/danielb/odoo/pg/database:/var/lib/postgresql/data \
-#postgres:9.5
-
-docker run -d \
--p 8079:8069 --name="odoo11" \
--e DB_PORT_5432_TCP_ADDR=db \
--e DB_PORT_5432_TCP_PORT=5432 \
--e DB_ENV_POSTGRES_USER=odoo \
--e DB_ENV_POSTGRES_PASSWORD=odoo \
---network pg_default \
---link db:db \
--v /Users/danielb/odoo/odoo11/conf:/etc/odoo \
--v /Users/danielb/odoo/odoo11/filestore:/var/lib/odoo \
--v /Users/danielb/odoo/odoo11/extra-addons:/mnt/extra-addons \
-hub.bmya.cl:5000/odoo11:l01 -- -c /etc/odoo/odoo.conf
-# -d odoo11a -u all
-
-docker logs -f odoo11
-
+docker-compose down
+docker-compose rm
+docker-compose up -d
+docker-compose logs -f
