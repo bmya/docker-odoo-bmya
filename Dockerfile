@@ -1,4 +1,5 @@
-FROM bmya/odoo:latest
+FROM bmya/odoo:8.0
+#latest
 MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 # based on https://github.com/ingadhoc/docker-odoo-adhoc
 # with custom references
@@ -126,9 +127,9 @@ RUN git clone -b 8.0 https://github.com/OCA/web.git
 RUN git clone -b 8.0 https://github.com/OCA/bank-statement-reconcile.git
 RUN git clone -b 8.0 https://github.com/OCA/account-invoicing.git
 # MAGENTO
-RUN git clone -b 8.0 https://github.com/OCA/connector.git
-RUN git clone -b 8.0 https://github.com/OCA/connector-ecommerce.git
-RUN git clone -b 8.0 https://github.com/OCA/connector-magento.git
+#RUN git clone -b 8.0 https://github.com/OCA/connector.git
+#RUN git clone -b 8.0 https://github.com/OCA/connector-ecommerce.git
+#RUN git clone -b 8.0 https://github.com/OCA/connector-magento.git
 RUN git clone -b 8.0 https://github.com/OCA/e-commerce.git
 RUN git clone -b 8.0 https://github.com/OCA/product-attribute.git
 RUN git clone -b 8.0 https://github.com/OCA/sale-workflow.git
