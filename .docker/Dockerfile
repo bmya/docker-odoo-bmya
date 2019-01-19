@@ -1,4 +1,4 @@
-FROM bmya/odoo:11.0
+FROM odoo:11.0
 MAINTAINER Blanco Martín & Asociados <daniel@blancomartin.cl>
 USER root
 
@@ -14,9 +14,6 @@ ENV LANG C.UTF-8
 ENV LANGUAGE C.UTF-8
 ENV LC_ALL C.UTF-8
 
-#RUN groupadd -r odoo
-#RUN useradd -g odoo odoo
-
 RUN set -x; \
 apt-get update \
 && apt-get install -y --no-install-recommends \
@@ -24,15 +21,18 @@ apt-utils \
 ca-certificates \
 curl \
 sudo \
-gcc mc bzr \ 
+gcc mc bzr \
 lptools make  \
+libldap2-dev libssl-dev libsasl2-dev \
 poppler-utils \
-build-essential libssl-dev libffi-dev python-dev python3-dev \
-antiword \
-git \
-pkg-config \
-swig
+python3-setuptools \
+python3-dev \
+antiword swig cpp \
+python-matplotlib \
+git wget
 
+RUN apt-get install -y python-setuptools python-genshi python-cairo python-lxml \
+libreoffice-script-provider-python
 
 RUN pip3 install --upgrade pip
 ADD ./requirements.txt .
