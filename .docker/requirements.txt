@@ -74,7 +74,7 @@ urllib3==1.22
 vatnumber==1.2
 vobject==0.9.5
 Wand==0.3.9
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 wheel
 woocommerce
 XlsxWriter==0.9.6
