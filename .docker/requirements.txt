@@ -1,7 +1,7 @@
 beautifulsoup4==4.6.0
 certifi==2018.1.18
 chardet==3.0.4
-cryptography==2.4.2
+cryptography==3.2
 cycler==0.9.0
 dbf>=0.88.019
 defusedxml>=0.5.0<=1
