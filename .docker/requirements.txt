@@ -21,7 +21,7 @@ git+https://github.com/OCA/openupgradelib.git
 git+https://github.com/pysiidte/pysiidte.git@0.94c
 git+https://github.com/urbina05/pyafipws@patch-2
 html5lib==0.999
-httplib2==0.9.2
+httplib2==0.19.0
 IPy
 idna==2.6
 Jinja2==2.8
