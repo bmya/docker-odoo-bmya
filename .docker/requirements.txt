@@ -70,7 +70,7 @@ suds-jurko==0.6
 traceback2==1.4.0
 Unidecode==1.0.22
 unittest2==1.1.0
-urllib3==1.22
+urllib3==1.26.5
 vatnumber==1.2
 vobject==0.9.5
 Wand==0.3.9
