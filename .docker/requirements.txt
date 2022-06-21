@@ -32,7 +32,7 @@ magento
 Markdown==2.6.6
 MarkupSafe==0.23
 num2words==0.5.4
-numpy==1.11.0
+numpy==1.22.0
 openerp-client-lib
 ovh==0.4.8
 passlib==1.6.5
