@@ -61,7 +61,7 @@ python-openid
 pyusb
 PyYAML==3.12
 qrcode
-reportlab==3.3.0
+reportlab==3.5.55
 roman==2.0.0
 setproctitle==1.1.8
 simplejson==3.8.1
